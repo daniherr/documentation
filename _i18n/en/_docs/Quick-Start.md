@@ -19,7 +19,7 @@ The microengine skeleton expects 3 Returns from `scan()`:
 Let's get into it.
 
 ```bash
-vim src/microengine/YourMicroengine.py 
+vim src/microengine/yourmicroengine.py 
 ``` 
 ```python
 from microengine import Microengine
@@ -37,7 +37,21 @@ class YourMicroengine(Microengine):
 		return bit, verdict, metadata
 ```
 
-Once you've implemented your scanning logic, you can easily test(locally) by:
+Now add your microengine to `src/microengine/backend.py`.
+
+```py
+from microengine.yourmicroengine import YourMicroengine
+...
+...
+...
+if backend = 'YourMicroengine':
+	micro_engine_class = YourMicroengine
+...
+...
+```
+
+Once you've implemented your scanning logic and added your engine to `backend.py`, you can easily test(locally) by:
+
 ```bash
 pip(3) install -r requirements.txt
 microengine-unit-test --malware_repo dummy --backend eicar
