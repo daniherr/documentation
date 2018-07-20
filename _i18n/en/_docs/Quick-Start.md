@@ -2,6 +2,8 @@
 
 We provide you with a skeleton microengine written in `Python3`.
 * [**polyswarm/microengine**](https://github.com/polyswarm/microengine) 
+
+
 There are some backends available by default with this, including: `ClamAV, YARA, EICAR-only, Multi(Clam+YARA), and Scratch`.
 If you're looking to get started right away, please familiarize yourself with `src/microengine/clamav.py` and `src/microengine/yarae.py`. 
 The ClamAV microengine we provide feeds a byte stream to `clamd` (the clam daemon), while the `YARA` engine requires a file written to disk.
@@ -54,17 +56,17 @@ Once you've implemented your scanning logic and added your engine to `backend.py
 
 ```bash
 pip(3) install -r requirements.txt
-microengine-unit-test --malware_repo dummy --backend eicar
+microengine-unit-test --malware_repo dummy --backend YourMicroengine:YourMicroengine
 ```
 or within a docker container:
 ```bash
 docker build -t polyswarm/microengine -f docker/Dockerfile .
 docker run -it polyswarm/microengine bash
-bash-4.4# microengine-unit-test --malware_repo dummy --backend eicar
+bash-4.4# microengine-unit-test --malware_repo dummy --backend YourMicroengine:YourMicroengine
 ```
 expected output:
 ```sh
-root@56c56f39c1fd:/usr/src/app# microengine-unit-test --malware_repo dummy --backend eicar
+root@56c56f39c1fd:/usr/src/app# microengine-unit-test --malware_repo dummy --backend YourMicroengine:YourMicroengine
 Using account: 0x05328f171b8c1463eaFDACCA478D9EE6a1d923F8
 .
 ----------------------------------------------------------------------
